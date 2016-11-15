@@ -1,9 +1,9 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {RecipeService} from "../recipe.service";
-import {Subscription} from "rxjs";
-import {Recipe} from "../recipe";
-import {FormArray, FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
+import {ActivatedRoute, Router} from '@angular/router';
+import {RecipeService} from '../recipe.service';
+import {Subscription} from 'rxjs';
+import {Recipe} from '../recipe';
+import {FormArray, FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'rb-recipe-edit',
@@ -25,12 +25,11 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
-        if(params.hasOwnProperty('id')) {
+        if (params.hasOwnProperty('id')) {
           this.isNew = false;
           this.recipeIndex = +params['id'];
           this.recipe = this.recipeService.getRecipe(this.recipeIndex);
-        }
-        else {
+        } else {
           this.isNew = true;
           this.recipe = null;
         }
@@ -41,10 +40,9 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const newRecipe = this.recipeForm.value;
-    if(this.isNew) {
+    if (this.isNew) {
       this.recipeService.addRecipe(newRecipe);
-    }
-    else {
+    } else {
       this.recipeService.editRecipe(this.recipe, newRecipe);
     }
     this.navigateBack();
@@ -63,7 +61,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
           Validators.pattern("\\d+")
         ]),
       })
-    )
+    );
   }
 
   onRemoveItem(index: number) {
@@ -84,9 +82,9 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     let recipeContent = '';
     let recipeIngredients: FormArray = new FormArray([]);
 
-    if(!this.isNew) {
-      if(this.recipe.hasOwnProperty('ingredients')) {
-        for(let i = 0; i < this.recipe.ingredients.length; i++) {
+    if (!this.isNew) {
+      if (this.recipe.hasOwnProperty('ingredients')) {
+        for (let i = 0; i < this.recipe.ingredients.length; i++) {
           recipeIngredients.push(
             new FormGroup({
               name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
@@ -95,7 +93,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
                 Validators.pattern("\\d+")
               ]),
             })
-          )
+          );
         }
       }
 

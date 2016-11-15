@@ -1,14 +1,15 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {Recipe} from "./recipe";
-import {Ingredient} from "../shared/ingredient";
-import {Headers, Http, Response} from "@angular/http";
+import {Recipe} from './recipe';
+import {Ingredient} from '../shared/ingredient';
+import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 
 @Injectable()
 export class RecipeService {
   recipesChanged = new EventEmitter<Recipe[]>();
   private recipes: Recipe[] = [
-    new Recipe('Schnitzel', 'Very tasty', 'http://images.derberater.de/files/imagecache/456xXXX_berater/berater/slides/WienerSchnitzel.jpg', [
+    new Recipe('Schnitzel', 'Very tasty',
+      'http://images.derberater.de/files/imagecache/456xXXX_berater/berater/slides/WienerSchnitzel.jpg', [
         new Ingredient('French Fries', 2),
         new Ingredient('Pork Meat', 1)
       ]),
@@ -25,7 +26,7 @@ export class RecipeService {
   }
 
   deleteRecipe(recipe: Recipe) {
-    this.recipes.splice(this.recipes.indexOf(recipe), 1)
+    this.recipes.splice(this.recipes.indexOf(recipe), 1);
   }
 
   addRecipe(recipe: Recipe) {
@@ -54,6 +55,6 @@ export class RecipeService {
           this.recipes = data;
           this.recipesChanged.emit(this.recipes);
         }
-      )
+      );
   }
 }

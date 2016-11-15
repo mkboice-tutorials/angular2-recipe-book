@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RecipeService} from "./recipes/recipe.service";
+import {RecipeService} from './recipes/recipe.service';
 
 @Component({
   selector: 'rb-header',
@@ -13,7 +13,7 @@ export class HeaderComponent {
     this.recipeService.storeData().subscribe(
       data => console.log(data),
       error => console.log(error)
-    )
+    );
   }
 
   onFetch() {

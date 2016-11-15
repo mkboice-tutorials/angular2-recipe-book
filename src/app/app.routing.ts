@@ -1,5 +1,5 @@
-import {Routes, RouterModule} from "@angular/router";
-import {HomeComponent} from "./home.component";
+import {Routes, RouterModule} from '@angular/router';
+import {HomeComponent} from './home.component';
 
 const APP_ROUTES: Routes = [
   {path: 'recipes', loadChildren: 'app/recipes/recipes.module#RecipesModule'},
